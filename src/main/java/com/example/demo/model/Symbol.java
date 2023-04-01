@@ -1,35 +1,19 @@
 package com.example.demo.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class Symbol {
     private String symbol;
     private Date date;
     private boolean isEnable;
     private String name;
-
-    public Symbol(String symbol, Date date, boolean isEnable, String name) {
-        this.symbol = symbol;
-        this.date = date;
-        this.isEnable = isEnable;
-        this.name = name;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public boolean isEnable() {
-        return isEnable;
-    }
-
-    public String getName() {
-        return name;
-    }
 
     @Override
     public String toString() {

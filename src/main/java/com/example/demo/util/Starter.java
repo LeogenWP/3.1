@@ -28,7 +28,7 @@ public class Starter {
         }
     }
 
-    @Scheduled
+    @Scheduled(fixedRate = 300 * 1000)
     public void refreshStockData() {
         if (QueueManager.getQueue().size() == 0) {
             Symbol[] symbols = AllSymbolsGetter.getAllSymbols();

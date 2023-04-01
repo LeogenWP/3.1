@@ -3,10 +3,18 @@ package com.example.demo.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity(name="company")
+@Table(name = "company", schema = "stocks")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class Company {
     @Id
     private String symbol;
@@ -16,32 +24,6 @@ public class Company {
     private float changePercent;
     @Column(name = "latest_price")
     private float latestPrice;
-
-    public Company(String symbol, String companyName, float changePercent, float latestPrice) {
-        this.symbol = symbol;
-        this.companyName = companyName;
-        this.changePercent = changePercent;
-        this.latestPrice = latestPrice;
-    }
-
-    public Company() {
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public float getChangePercent() {
-        return changePercent;
-    }
-
-    public float getLatestPrice() {
-        return latestPrice;
-    }
 
     @Override
     public String toString() {

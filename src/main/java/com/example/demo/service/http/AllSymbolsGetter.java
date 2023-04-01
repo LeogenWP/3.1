@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class AllSymbolsGetter {
-    private static final String TOKEN = "pk_b6b727dabd074898aed1d7d78b20c9e3";
+    private static final String TOKEN = "pk_3576a69c7743495aab464491a370ced7";
     private static final String URL = "https://cloud.iexapis.com/stable/ref-data/iex/symbols?token=";
 
     public static Symbol[] getAllSymbols() {
