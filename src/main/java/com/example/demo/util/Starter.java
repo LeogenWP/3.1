@@ -15,11 +15,13 @@ public class Starter {
     @Autowired
     private CompanyRepository repo;
     @Autowired
+    private AllSymbolsGetter allSymbolsGetter;
+    @Autowired
     private CompanyInfoUpdater companyInfoUpdater;
     @Scheduled(fixedRate = 300 * 1000)
     public void refreshStockData() {
         if (QueueManager.getQueue().size() == 0) {
-            Symbol[] symbols = AllSymbolsGetter.getAllSymbols();
+            Symbol[] symbols = allSymbolsGetter.getAllSymbols();
             for (Symbol symbol : symbols) {
                 QueueManager.getQueue().add(symbol);
             }

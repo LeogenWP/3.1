@@ -4,7 +4,6 @@ import com.example.demo.model.Company;
 import com.example.demo.model.Symbol;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
