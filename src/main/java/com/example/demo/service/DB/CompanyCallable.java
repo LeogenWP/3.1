@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.DB;
 
 import com.example.demo.model.Company;
 import com.example.demo.model.Symbol;

@@ -1,24 +1,24 @@
-package com.example.demo.service;
+package com.example.demo.service.DB;
 
 import com.example.demo.dao.CompanyRepository;
 import com.example.demo.model.Company;
+import com.example.demo.util.Executor;
 import com.example.demo.util.cache.CompanyManager;
 import com.example.demo.util.cache.QueueManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 @Component
-public class Executor {
-    private static final ExecutorService executor = Executors.newFixedThreadPool(5);
+public class CompanyInfoUpdater {
 
     @Autowired
     private CompanyRepository repo;
+
+    @Autowired
+    private Executor executor;
 
     public void startWork()  {
 
@@ -26,7 +26,7 @@ public class Executor {
             for (int i = 0; i < 6; i++) {
                 try {
                     CompanyCallable company = new CompanyCallable();
-                    Future<Company> companyFuture = executor.submit(company);
+                    Future<Company> companyFuture = executor.getExecutor().submit(company);
                     if (companyFuture.get() != null) {
                         saveCompany(companyFuture.get());
                     }
