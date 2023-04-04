@@ -5,19 +5,17 @@ import com.example.demo.model.Symbol;
 import com.example.demo.service.DB.CompanyInfoUpdater;
 import com.example.demo.service.http.AllSymbolsGetter;
 import com.example.demo.util.cache.QueueManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class Starter {
 
-    @Autowired
-    private CompanyRepository repo;
-    @Autowired
-    private AllSymbolsGetter allSymbolsGetter;
-    @Autowired
-    private CompanyInfoUpdater companyInfoUpdater;
+    private final CompanyRepository repo;
+    private final AllSymbolsGetter allSymbolsGetter;
+    private final CompanyInfoUpdater companyInfoUpdater;
     @Scheduled(fixedRate = 300 * 1000)
     public void refreshStockData() {
         if (QueueManager.getQueue().size() == 0) {

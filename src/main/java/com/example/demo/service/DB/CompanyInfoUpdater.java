@@ -5,20 +5,18 @@ import com.example.demo.model.Company;
 import com.example.demo.util.Executor;
 import com.example.demo.util.cache.CompanyManager;
 import com.example.demo.util.cache.QueueManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @Component
+@RequiredArgsConstructor
 public class CompanyInfoUpdater {
+    private final CompanyRepository repo;
 
-    @Autowired
-    private CompanyRepository repo;
-
-    @Autowired
-    private Executor executor;
+    private final Executor executor;
 
     public void startWork()  {
 

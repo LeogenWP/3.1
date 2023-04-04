@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.util.Starter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -12,10 +13,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
+@RequiredArgsConstructor
 public class DemoApplication implements CommandLineRunner {
-
-	@Autowired
-	private Starter starter;
+	private final Starter starter;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
