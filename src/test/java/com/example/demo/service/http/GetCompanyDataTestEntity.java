@@ -1,13 +1,11 @@
 package com.example.demo.service.http;
 
-import com.example.demo.model.Company;
+import com.example.demo.model.CompanyEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class GetCompanyDataTest {
+class GetCompanyDataTestEntity {
 
     @Test
     void getCompanyData() {
@@ -18,16 +16,17 @@ class GetCompanyDataTest {
 
         String urlWithSymbol = String.format(URL, symbol);
         RestTemplate restTemplate = new RestTemplate();
-        Company company = null;
+        CompanyEntity company = null;
 
         try {
-            ResponseEntity<Company> response =
+            ResponseEntity<CompanyEntity> response =
                     restTemplate.getForEntity(
                             urlWithSymbol + TOKEN,
-                            Company.class);
+                            CompanyEntity.class);
             company = response.getBody();
         } catch (Exception e) {
             System.out.println("Exception for symbol: " + symbol + ": " + e);
         }
     }
+
 }

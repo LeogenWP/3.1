@@ -9,7 +9,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Symbol {
+public class SymbolEntity {
     private String symbol;
     private Date date;
     private boolean isEnable;

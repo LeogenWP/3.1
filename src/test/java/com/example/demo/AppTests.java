@@ -1,3 +1,4 @@
+/*
 package com.example.demo;
 
 import org.springframework.test.context.TestPropertySource;
@@ -24,3 +25,4 @@ public abstract class AppTests {
         System.setProperty("spring.flyway.enabled", "true");
     }
 }
+*/

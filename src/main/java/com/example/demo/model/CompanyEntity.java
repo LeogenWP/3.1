@@ -15,7 +15,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Company {
+public class CompanyEntity {
     @Id
     private String symbol;
     @Column(name = "company_name")
@@ -39,7 +39,7 @@ public class Company {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Company company = (Company) o;
+        CompanyEntity company = (CompanyEntity) o;
         return Float.compare(company.changePercent, changePercent) == 0 && Float.compare(company.latestPrice, latestPrice) == 0 && symbol.equals(company.symbol) && companyName.equals(company.companyName);
     }
 
