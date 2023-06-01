@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import java.util.Objects;
 
 @Entity(name="company")
-@Table(name = "company", schema = "stocks")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

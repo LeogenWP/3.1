@@ -19,8 +19,6 @@ public class IexApiClient {
     private String URL;
 
 
-
-    //TODO: make async
     public CompletableFuture<CompanyEntity> getCompanyData(SymbolEntity symbolEntity) {
         String urlWithSymbol = String.format(URL, symbolEntity.getSymbol());
         RestTemplate restTemplate = new RestTemplate();
