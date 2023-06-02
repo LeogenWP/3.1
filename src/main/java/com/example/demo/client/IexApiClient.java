@@ -16,11 +16,14 @@ public class IexApiClient {
     @Value("${service.token}")
     private String TOKEN;
     @Value("${service.all-symbols-url}")
-    private String URL;
+    private String ALL_SYMBOLS_URL;
+
+    @Value("${service.company-data}")
+    private String COMPANY_URL;
 
 
     public CompletableFuture<CompanyEntity> getCompanyData(SymbolEntity symbolEntity) {
-        String urlWithSymbol = String.format(URL, symbolEntity.getSymbol());
+        String urlWithSymbol = String.format(COMPANY_URL, symbolEntity.getSymbol());
         RestTemplate restTemplate = new RestTemplate();
         CompanyEntity companyEntity = null;
 
@@ -41,7 +44,7 @@ public class IexApiClient {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<SymbolEntity[]> response =
                 restTemplate.getForEntity(
-                        URL + TOKEN,
+                        ALL_SYMBOLS_URL + TOKEN,
                         SymbolEntity[].class);
         SymbolEntity[] employees = response.getBody();
         return employees;
