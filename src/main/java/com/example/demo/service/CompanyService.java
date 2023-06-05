@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.client.IexApiClient;
 import com.example.demo.model.CompanyEntity;
+import com.example.demo.model.SymbolEntity;
 import com.example.demo.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -20,16 +23,20 @@ public class CompanyService {
     private final CompanyRepository companyRepository;
 
     public void processCompanyDetails() {
-        List<CompletableFuture<CompanyEntity>> completableFutures = Arrays.stream(iexApiClient.getAllSymbols())
-                .map(iexApiClient::getCompanyData).toList();
 
+        SymbolEntity[] array = iexApiClient.getAllSymbols();
 
-        //TODO: handle 429 -> if yes - ignore
+        List<CompletableFuture<CompanyEntity>> completableFutures = Arrays.stream(array).toList().parallelStream().map(iexApiClient::getCompanyData).toList();
+
         List<CompanyEntity> companyEntities = completableFutures
                 .parallelStream()
                 .map(CompletableFuture::join)
                 .toList();
 
-        companyRepository.saveAll(companyEntities);
+        List<CompanyEntity> listWithoutNulls = companyEntities.parallelStream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        companyRepository.saveAll(listWithoutNulls);
     }
 }

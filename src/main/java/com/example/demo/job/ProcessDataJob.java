@@ -14,7 +14,7 @@ public class ProcessDataJob {
 
     private final CompanyService companyService;
 
-    @Scheduled(fixedRate = 300 * 1000)
+    @Scheduled(fixedRate = 300 * 1000000)
     public void test() {
         companyService.processCompanyDetails();
     }
