@@ -11,13 +11,13 @@ import java.util.List;
 @Repository
 public interface CompanyRepository extends JpaRepository<CompanyEntity, String> {
 
-    @Query(value = "select  * from stocks.company \n" +
+    @Query(value = "select * from company \n" +
             "order by latest_price desc limit 5", nativeQuery = true)
     List<CompanyEntity> findTop5ByLatestPrice();
 
     @Query(value = """
             select * 
-            from stocks.company
+            from company
             order by Abs(change_percent)  desc
             limit 5
             """, nativeQuery = true)
