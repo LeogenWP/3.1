@@ -22,7 +22,7 @@ public class CompanyService {
     private final IexApiClient iexApiClient;
     private final CompanyRepository companyRepository;
 
-    public void processCompanyDetails() {
+    public List<CompanyEntity> processCompanyDetails() {
 
         SymbolEntity[] array = iexApiClient.getAllSymbols();
 
@@ -38,5 +38,12 @@ public class CompanyService {
                 .collect(Collectors.toList());
 
         companyRepository.saveAll(listWithoutNulls);
+        return listWithoutNulls;
+    }
+
+    public SymbolEntity[] getAllSymbols() {
+
+        SymbolEntity[] array = iexApiClient.getAllSymbols();
+        return array;
     }
 }
