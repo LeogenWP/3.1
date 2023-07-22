@@ -22,11 +22,11 @@ test_job:
     - echo "Maven test started"
     - "mvn test"
 
-deploy_job:
-  stage: deploy
+release_job:
+  stage: release
   tags:
     - docker
   script:
-    - echo "deploy on yc started"
+    - echo "release on yc started"
 
       
