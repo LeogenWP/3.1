@@ -28,6 +28,7 @@ release_job:
     - docker
   script:
     - echo "release on yc started"
+    - "mvn install"
     - "docker login"
     - "docker build -t cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.3 ."
     - "docker push cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.3"
