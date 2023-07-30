@@ -8,7 +8,10 @@ import com.example.demo.repository.CompanyRepository;
 import org.junit.Assume;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
@@ -21,16 +24,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.doReturn;
 
 @ActiveProfiles("test")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CompanyServiceTest extends AppTests {
-    @Autowired
-    CompanyService companyService;
-    @MockBean
-    CompanyRepository companyRepository;
-
-    @MockBean
-    IexApiClient iexApiClient;
+class CompanyServiceTest {
+    CompanyRepository companyRepository = Mockito.mock(CompanyRepository.class);
+    IexApiClient iexApiClient = Mockito.mock(IexApiClient.class);
+    CompanyService companyService = new CompanyService(iexApiClient, companyRepository);
 
     @Test
     void processCompanyDetails() {

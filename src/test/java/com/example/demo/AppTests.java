@@ -10,9 +10,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-@SpringBootTest(classes = DemoApplication.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-@TestPropertySource(value = "file:src/test/resources/application.properties")
+
 public abstract class AppTests {
     public static  PostgreSQLContainer<?> postgreSQLContainer;
 
