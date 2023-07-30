@@ -28,5 +28,8 @@ release_job:
     - docker
   script:
     - echo "release on yc started"
+    - "docker build -t cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.0 ."
+    - "docker push cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.0"
+    - "kubectl run --attach stocks --image cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.1"
 
       
