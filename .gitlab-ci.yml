@@ -29,8 +29,8 @@ release_job:
   script:
     - echo "release on yc started"
     - "docker login"
-    - "docker build -t cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.2 ."
-    - "docker push cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.2"
-    - "kubectl run --attach stocks --image cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.2"
+    - "docker build -t cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.3 ."
+    - "docker push cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.3"
+    - "kubectl run --attach stocks --image cr.yandex/crpq00bseu7i4e4v3ui7/stocks:v1.0.3"
 
       
